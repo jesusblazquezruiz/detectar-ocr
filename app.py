@@ -1,3 +1,14 @@
+import sys, importlib
+import streamlit as st
+
+st.sidebar.write("Python:", sys.version)
+for mod in ("fitz", "pymupdf", "pandas", "streamlit"):
+    try:
+        m = importlib.import_module(mod)
+        st.sidebar.write(mod, getattr(m, "__version__", "sin versión"))
+    except Exception as e:
+        st.sidebar.write(mod, "❌ no disponible:", e)
+
 import time
 import fitz  # PyMuPDF
 import pandas as pd
